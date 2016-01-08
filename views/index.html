@@ -1,0 +1,60 @@
+{% include "inc/header" %}
+
+	<div class="menu">
+		<a href="/new"><button class="pure-button pure-button-primary pure-button-small">Register new manga</button></a>
+	</div>
+
+	<div class="box">
+		<table class="pure-table pure-table-horizontal">
+		    <thead>
+		        <tr>
+		            <th>Number of book</th>
+		            <th>Title</th>
+		            <th>&nbsp;</th>
+		        </tr>
+		    </thead>
+
+{#			<tbody>
+		        <tr>
+		            <td>{{result.name}}</td>
+		            <td>{{result.kana}}</td>
+		        </tr>
+		    </tbody>
+}
+			<tbody>
+		    	{% for i in results %}
+		        <tr>
+		            <td>{{i.name}}</td>
+		            <td>{{i.kana}}</td>
+		        </tr>
+		        {% endfor %}
+		    </tbody>
+
+		</table>
+	</div>
+
+	<div class="box">
+		<table class="pure-table pure-table-horizontal">
+		    <thead>
+		        <tr>
+		            <th>Number of book</th>
+		            <th>Title</th>
+		            <th>&nbsp;</th>
+		        </tr>
+		    </thead>
+
+		</table>
+	</div>
+{#
+	{% if result.pagination.has_next or result.pagination.has_prev %}
+	<div class="pager">
+		{% if result.pagination.has_prev %}
+		<a href="/{{result.pagination.page - 1}}"><button class="pure-button pure-button-small">Before page</button></a>
+		{% endif %}
+		{% if result.pagination.has_next %}
+		<a href="/{{result.pagination.page + 1}}"><button class="pure-button pure-button-small">Next page</button></a>
+		{% endif %}
+	</div>
+	{% endif %}
+ #}
+{% include "inc/footer" %}
