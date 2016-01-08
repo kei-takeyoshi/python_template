@@ -14,11 +14,20 @@
 		        </tr>
 		    </thead>
 
-			<tbody>
+{#			<tbody>
 		        <tr>
 		            <td>{{result.name}}</td>
 		            <td>{{result.kana}}</td>
 		        </tr>
+		    </tbody>
+}
+			<tbody>
+		    	{% for i in results %}
+		        <tr>
+		            <td>{{i.name}}</td>
+		            <td>{{i.kana}}</td>
+		        </tr>
+		        {% endfor %}
 		    </tbody>
 
 		</table>

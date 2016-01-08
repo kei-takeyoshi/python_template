@@ -14,7 +14,7 @@ model = app.models.manga.Manga()
 @route('/<page:int>')
 def index(page=1):
     result = model.load(page)
-    return template('index', result = result)
+    return template('index', results = result)
 
 
 # new regiser page

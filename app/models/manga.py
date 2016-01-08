@@ -16,9 +16,14 @@ class Manga:
 
     def load(self, page):
 
-        result = student.search(db.session)
-
-        return result
+#        student.delete(db.session, 'test taro', 'kana test')
+#        student.insert(db.session, 'test taro', 'kana test')
+#        student.update(db.session, 'test taro', 'sample test')
+#        result = student.select(db.session, 'reizei mako')
+        results = student.select_all(db.session)
+#        for result in results:
+#            return result
+        return results
 
 
     # ==========================================

@@ -11,17 +11,53 @@ class Student(Base):
     name = sqlalchemy.Column(sqlalchemy.String(30))
     kana = sqlalchemy.Column(sqlalchemy.String(30))
 
-def search(session):
+def insert(session, name, kana):
+    '''
+    :param Session session
+    :param String name
+    :param String kana
+    '''
+    new_student = Student(name=name, kana=kana)
+    session.add(new_student)
+    session.commit()
+
+def update(session, name, change_name):
+    '''
+    :param Session session
+    :param String name
+    :param String kana
+    '''
+    session.query(Student).filter_by(name=name).update({"name": change_name})
+    session.commit()
+
+def delete(session, name, kana):
+    '''
+    :param Session session
+    :param String name
+    :param String kana
+    '''
+    found_student = session.query(Student).filter_by(name=name).first()
+    if found_student is not None:
+        session.delete(found_student)
+        session.commit()
+
+def select(session, name):
     '''
     :param Session session: name
     :return found_student
     '''
     try:
         with session.begin(subtransactions=True):
-            # SELECT 時に排他ロックを取得する
             query = session.query(Student).with_lockmode('update')
-            # 追加したデータを検索
-            found_student = session.query(Student).filter_by(name='saori takebe').first()
+            found_student = session.query(Student).filter_by(name=name).first()
             return found_student
     except SQLAlchemyError:
         session.rollback()
+
+def select_all(session):
+    '''
+    :param Session session
+    :return result
+    '''
+    results = session.query(Student).all()
+    return results
